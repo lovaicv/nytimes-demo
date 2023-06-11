@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android/.cxx/Debug/17t1s1j3/x86'
+ninja: no work to do.

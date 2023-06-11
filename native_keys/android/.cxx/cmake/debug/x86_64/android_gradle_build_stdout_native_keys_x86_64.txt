@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/x86_64'
+ninja: no work to do.

@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "directories": [
+        {
+          "build": ".",
+          "minimumCMakeVersion": {
+            "string": "3.4.1"
+          },
+          "projectIndex": 0,
+          "source": ".",
+          "targetIndexes": [
+            0
+          ]
+        }
+      ],
+      "name": "RelWithDebInfo",
+      "projects": [
+        {
+          "directoryIndexes": [
+            0
+          ],
+          "name": "Project",
+          "targetIndexes": [
+            0
+          ]
+        }
+      ],
+      "targets": [
+        {
+          "directoryIndex": 0,
+          "id": "native_keys::@6890427a1f51a3e7e1df",
+          "jsonFile": "target-native_keys-RelWithDebInfo-097739e85479b06e260d.json",
+          "name": "native_keys",
+          "projectIndex": 0
+        }
+      ]
+    }
+  ],
+  "kind": "codemodel",
+  "paths": {
+    "build": "/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android/.cxx/RelWithDebInfo/3n6t4x2q/arm64-v8a",
+    "source": "/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android"
+  },
+  "version": {
+    "major": 2,
+    "minor": 1
+  }
+}

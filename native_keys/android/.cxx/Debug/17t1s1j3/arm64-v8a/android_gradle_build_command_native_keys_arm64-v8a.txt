@@ -1,0 +1,7 @@
+Executable : /Users/mobileapp/Library/Android/sdk/cmake/3.18.1/bin/ninja
+arguments : 
+-C
+/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android/.cxx/Debug/17t1s1j3/arm64-v8a
+native_keys
+jvmArgs : 
+

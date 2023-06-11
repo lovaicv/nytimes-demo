@@ -1,0 +1,7 @@
+Executable : /Users/mobileapp/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/release/x86_64
+native_keys
+jvmArgs : 
+

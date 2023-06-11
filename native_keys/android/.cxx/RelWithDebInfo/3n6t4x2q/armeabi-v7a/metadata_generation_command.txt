@@ -1,0 +1,23 @@
+                    Executable : /Users/mobileapp/Library/Android/sdk/cmake/3.18.1/bin/cmake
+arguments : 
+-H/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=16
+-DANDROID_PLATFORM=android-16
+-DANDROID_ABI=armeabi-v7a
+-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a
+-DANDROID_NDK=/Users/mobileapp/Library/Android/sdk/ndk/21.4.7075529
+-DCMAKE_ANDROID_NDK=/Users/mobileapp/Library/Android/sdk/ndk/21.4.7075529
+-DCMAKE_TOOLCHAIN_FILE=/Users/mobileapp/Library/Android/sdk/ndk/21.4.7075529/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/mobileapp/Library/Android/sdk/cmake/3.18.1/bin/ninja
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/mobileapp/AndroidStudioProjects/easy-app/build/native_keys/intermediates/cxx/RelWithDebInfo/3n6t4x2q/obj/armeabi-v7a
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=/Users/mobileapp/AndroidStudioProjects/easy-app/build/native_keys/intermediates/cxx/RelWithDebInfo/3n6t4x2q/obj/armeabi-v7a
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
+-B/Users/mobileapp/AndroidStudioProjects/easy-app/native_keys/android/.cxx/RelWithDebInfo/3n6t4x2q/armeabi-v7a
+-GNinja
+jvmArgs : 
+
+
+                    Build command args: []
+                    Version: 2
