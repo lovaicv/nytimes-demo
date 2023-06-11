@@ -1,2 +1,2 @@
-ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/armeabi-v7a'
+ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/debug/armeabi-v7a'
 ninja: no work to do.

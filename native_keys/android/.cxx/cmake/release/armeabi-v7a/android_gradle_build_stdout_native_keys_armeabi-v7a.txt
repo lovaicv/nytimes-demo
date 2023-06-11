@@ -1,13 +1,13 @@
-ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/release/armeabi-v7a'
-[1/2] Building CXX object CMakeFiles/native_keys.dir/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/ios/Classes/native_keys.cpp.o
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/ios/Classes/native_keys.cpp:6:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+ninja: Entering directory `/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/release/armeabi-v7a'
+[1/2] Building CXX object CMakeFiles/native_keys.dir/Users/mobileapp/AndroidStudioProjects/test_nytimes/nytimes-demo/native_keys/ios/Classes/native_keys.cpp.o
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/ios/Classes/native_keys.cpp:6:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
     return "eXZZVEVGZ2dqa0xjZ2NWMngwZGhyZ3FsbHo1R1Y0R2Y=";
            ^
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/ios/Classes/native_keys.cpp:12:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/ios/Classes/native_keys.cpp:12:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
     return "OG54eURGeDBzMmxjQ1ZOdg==";
            ^
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/ios/Classes/native_keys.cpp:18:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/ios/Classes/native_keys.cpp:18:12: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
     return "WbDFNyai+FjPDTjTPpuRbW+ARjHa/UAY6lywhbD4rVrkeds4N4Z7674u0rZRgvu0";
            ^
 3 warnings generated.
-[2/2] Linking CXX shared library /Users/mobileapp/AndroidStudioProjects/nytimes/build/native_keys/intermediates/cmake/release/obj/armeabi-v7a/libnative_keys.so
+[2/2] Linking CXX shared library "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/build/native_keys/intermediates/cmake/release/obj/armeabi-v7a/libnative_keys.so"

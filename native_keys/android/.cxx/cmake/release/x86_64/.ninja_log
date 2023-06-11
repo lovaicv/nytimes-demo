@@ -1,3 +1,3 @@
 # ninja log v5
-0	77	1686481989	CMakeFiles/native_keys.dir/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/ios/Classes/native_keys.cpp.o	178c82ec89b7334b
-77	133	1686481989	/Users/mobileapp/AndroidStudioProjects/nytimes/build/native_keys/intermediates/cmake/release/obj/x86_64/libnative_keys.so	59ef3cb77f2d477d
+1	75	1686483905	CMakeFiles/native_keys.dir/Users/mobileapp/AndroidStudioProjects/test_nytimes/nytimes-demo/native_keys/ios/Classes/native_keys.cpp.o	792187c1ab86a6a4
+75	134	1686483905	/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/build/native_keys/intermediates/cmake/release/obj/x86_64/libnative_keys.so	852d5679ed856891

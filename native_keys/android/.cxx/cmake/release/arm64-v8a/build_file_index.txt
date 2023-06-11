@@ -1,1 +1,1 @@
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/CMakeLists.txt
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/CMakeLists.txt

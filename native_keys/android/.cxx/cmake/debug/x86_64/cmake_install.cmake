@@ -1,4 +1,4 @@
-# Install script for directory: /Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android
+# Install script for directory: /Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android
 
 # Set the install prefix
 if (NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif ()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
         "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/x86_64/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/debug/x86_64/${CMAKE_INSTALL_MANIFEST}"
         "${CMAKE_INSTALL_MANIFEST_CONTENT}")

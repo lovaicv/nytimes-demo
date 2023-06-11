@@ -1,20 +1,20 @@
 {
   "stringTable": {},
   "buildFiles": [
-    "/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/CMakeLists.txt"
+    "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
       "/Users/mobileapp/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
       "-C",
-      "/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/release/x86",
+      "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/release/x86",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
     "/Users/mobileapp/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
     "-C",
-    "/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/release/x86",
+    "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/release/x86",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
@@ -22,13 +22,13 @@
       "buildCommandComponents": [
         "/Users/mobileapp/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
         "-C",
-        "/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/release/x86",
+        "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/release/x86",
         "native_keys"
       ],
       "buildType": "release",
       "abi": "x86",
       "artifactName": "native_keys",
-      "output": "/Users/mobileapp/AndroidStudioProjects/nytimes/build/native_keys/intermediates/cmake/release/obj/x86/libnative_keys.so",
+      "output": "/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/build/native_keys/intermediates/cmake/release/obj/x86/libnative_keys.so",
       "runtimeFiles": []
     }
   },

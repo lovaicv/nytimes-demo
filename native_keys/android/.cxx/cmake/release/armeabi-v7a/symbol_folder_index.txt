@@ -1,1 +1,1 @@
-/Users/mobileapp/AndroidStudioProjects/nytimes/build/native_keys/intermediates/cmake/release/obj/armeabi-v7a
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/build/native_keys/intermediates/cmake/release/obj/armeabi-v7a

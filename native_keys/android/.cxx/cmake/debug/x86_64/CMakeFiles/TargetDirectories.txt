@@ -1,3 +1,3 @@
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
-/Users/mobileapp/AndroidStudioProjects/nytimes/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/native_keys.dir
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
+/Users/mobileapp/AndroidStudioProjects/test nytimes/nytimes-demo/native_keys/android/.cxx/cmake/debug/x86_64/CMakeFiles/native_keys.dir
