@@ -1,17 +1,11 @@
-# nytimes
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # nytimes-demo
+
+how to build and run using Android Studio
+1. Clone using Android Studio
+2. connect iPhone or Android phone
+3. run main.dart
+4. run tests in unit_test.dart for testing
+
+There is an APK (apk-release.apk) file in the main folder for you to directly install in the Android phone, no IPA provided because I dont have distribution account.
+
+I also attached a screen record demo (demo.mp4) in the main folder. 
