@@ -12,6 +12,7 @@ import 'package:nytimes/database/articles_db.dart';
 import 'package:nytimes/pages/search/search_page_controller.dart';
 import 'package:nytimes/widgets/bottom_bar/bottom_bar.dart';
 
+/// A widget which is displayed as the search screen of the application
 class SearchPage extends GetView<SearchPageController> {
   const SearchPage({Key? key}) : super(key: key);
 
@@ -80,7 +81,6 @@ class SearchPage extends GetView<SearchPageController> {
                       shrinkWrap: true,
                       padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 60),
                       builderDelegate: PagedChildBuilderDelegate<Article>(itemBuilder: (BuildContext context, Article article, int index) {
-                        // Docs? docs = controller.docs?[index];
                         String? imageUrl;
                         if (article.multimediaUrl != null && article.multimediaUrl!.isNotEmpty) {
                           imageUrl = '${Urls.imageUrl}${article.multimediaUrl}';
@@ -147,7 +147,7 @@ class SearchPage extends GetView<SearchPageController> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      // Text(article.tag??''),
+                                      Expanded(child: Text(article.tag ?? '')),
                                       Text(article.date ?? ''),
                                     ],
                                   ),
@@ -157,7 +157,6 @@ class SearchPage extends GetView<SearchPageController> {
                           ),
                         );
                       }, firstPageProgressIndicatorBuilder: (_) {
-                        // return progressIndicator();
                         return Container();
                       }, newPageProgressIndicatorBuilder: (_) {
                         return const SizedBox(
@@ -177,7 +176,6 @@ class SearchPage extends GetView<SearchPageController> {
                           height: 20,
                         );
                       },
-                      // itemCount: controller.docs?.length ?? 0,
                     ),
                   ),
                 ),
@@ -192,9 +190,9 @@ class SearchPage extends GetView<SearchPageController> {
                     ),
                   ),
                 )),
-            // Obx(() => bottomBar(right: 0)),
-            BottomBar(
-              right: 0,
+            const BottomBar(
+              left: 10,
+              right: 10,
             ),
             Center(
                 child: Obx(

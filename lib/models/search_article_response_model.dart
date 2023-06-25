@@ -1,3 +1,4 @@
+/// Data models for handling the response from the NY Times Search Article
 class SearchArticleResponseModel {
   String? status;
   String? copyright;
@@ -72,27 +73,26 @@ class Docs {
   int? wordCount;
   String? uri;
 
-  Docs(
-      {this.abstract,
-      this.webUrl,
-      this.snippet,
-      this.leadParagraph,
-      this.printSection,
-      this.printPage,
-      this.source,
-      this.multimedia,
-      this.headline,
-      this.keywords,
-      this.pubDate,
-      this.documentType,
-      this.newsDesk,
-      this.sectionName,
-      this.subsectionName,
-      this.byline,
-      this.typeOfMaterial,
-      this.sId,
-      this.wordCount,
-      this.uri});
+  Docs({this.abstract,
+    this.webUrl,
+    this.snippet,
+    this.leadParagraph,
+    this.printSection,
+    this.printPage,
+    this.source,
+    this.multimedia,
+    this.headline,
+    this.keywords,
+    this.pubDate,
+    this.documentType,
+    this.newsDesk,
+    this.sectionName,
+    this.subsectionName,
+    this.byline,
+    this.typeOfMaterial,
+    this.sId,
+    this.wordCount,
+    this.uri});
 
   Docs.fromJson(Map<String, dynamic> json) {
     abstract = json['abstract'];
@@ -174,18 +174,17 @@ class Multimedia {
   String? subType;
   String? cropName;
 
-  Multimedia(
-      {this.rank,
-      this.subtype,
-      this.caption,
-      this.credit,
-      this.type,
-      this.url,
-      this.height,
-      this.width,
-      this.legacy,
-      this.subType,
-      this.cropName});
+  Multimedia({this.rank,
+    this.subtype,
+    this.caption,
+    this.credit,
+    this.type,
+    this.url,
+    this.height,
+    this.width,
+    this.legacy,
+    this.subType,
+    this.cropName});
 
   Multimedia.fromJson(Map<String, dynamic> json) {
     rank = json['rank'];
@@ -231,16 +230,15 @@ class Legacy {
   int? wideheight;
   String? wide;
 
-  Legacy(
-      {this.xlarge,
-      this.xlargewidth,
-      this.xlargeheight,
-      this.thumbnail,
-      this.thumbnailwidth,
-      this.thumbnailheight,
-      this.widewidth,
-      this.wideheight,
-      this.wide});
+  Legacy({this.xlarge,
+    this.xlargewidth,
+    this.xlargeheight,
+    this.thumbnail,
+    this.thumbnailwidth,
+    this.thumbnailheight,
+    this.widewidth,
+    this.wideheight,
+    this.wide});
 
   Legacy.fromJson(Map<String, dynamic> json) {
     xlarge = json['xlarge'];

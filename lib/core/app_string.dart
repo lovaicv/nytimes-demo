@@ -1,3 +1,4 @@
+/// The `AppString` class defines a collection of static constants representing various strings used in the application.
 class AppString {
   static const appName = 'appName';
   static const offline = 'offline';

@@ -12,16 +12,16 @@ import 'package:nytimes/database/articles_db.dart';
 import 'package:nytimes/models/search_article_response_model.dart';
 import 'package:nytimes/utils/utils.dart';
 
+/// The controller for the `SearchPage` widget.
 class SearchPageController extends GetxController {
   SearchPageController({required this.repository, required this.connectionController, required this.hive});
 
-  // RxList<Article> results = <Article>[].obs;
-  RxBool isListEmpty = true.obs;
-  String searchText = '';
   final HomeRepository repository;
   final ConnectionController connectionController;
   final HiveInterface hive;
-
+  final _pageSize = 10;
+  RxBool isListEmpty = true.obs;
+  String searchText = '';
   Timer? debounce;
   RxBool isLoading = false.obs;
   RxBool isReload = false.obs;
@@ -29,7 +29,7 @@ class SearchPageController extends GetxController {
   ScrollController scrollController = ScrollController();
   FocusNode focusNode = FocusNode();
   RxString text = AppString.beginSearch.tr.obs;
-  final _pageSize = 10;
+  List<Article> results = [];
 
   @override
   onClose() {
@@ -52,10 +52,13 @@ class SearchPageController extends GetxController {
     });
   }
 
+  /// Resets the paging controller, clearing the search results.
   reset() {
     pagingController.refresh();
   }
 
+  /// Performs a search for articles with condition
+  /// [pageKey] to indicate which page to load
   searchArticle(int pageKey) async {
     if (searchText.isEmpty) {
       pagingController.refresh();
@@ -68,6 +71,8 @@ class SearchPageController extends GetxController {
     }
   }
 
+  /// Performs a search for articles using the API.
+  /// [pageKey] to indicate which page to load
   searchArticleApi(int pageKey) async {
     int tempPageKey = pageKey;
     if (!isReload.value) isLoading.value = true;
@@ -101,7 +106,6 @@ class SearchPageController extends GetxController {
               AppString.searchC,
               convertDateFormat(element.pubDate!),
             );
-            showLog('article ${article.keywords}');
             // results.add(article);
             Iterable<Article> isArticleExist = articles.where((article) => element.webUrl == article.url);
             if (isArticleExist.isEmpty) {
@@ -130,8 +134,9 @@ class SearchPageController extends GetxController {
     }
   }
 
-  List<Article> results = [];
-
+  /// Performs a local search for articles.
+  /// Only happen when device is in offline mode.
+  /// [pageKey] to indicate which page to load
   searchArticleLocal(int pageKey) async {
     showLog('searchArticleLocal $searchText');
     int tempPageKey = pageKey + 1;

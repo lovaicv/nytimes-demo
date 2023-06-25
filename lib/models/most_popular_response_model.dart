@@ -1,3 +1,4 @@
+/// Data models for handling the response from the NY Times Top Stories
 class MostPopularResponseModel {
   String? status;
   String? copyright;
@@ -54,29 +55,28 @@ class Results {
   List<Media>? media;
   int? etaId;
 
-  Results(
-      {this.uri,
-      this.url,
-      this.id,
-      this.assetId,
-      this.source,
-      this.publishedDate,
-      this.updated,
-      this.section,
-      this.subsection,
-      this.nytdsection,
-      this.adxKeywords,
-      this.column,
-      this.byline,
-      this.type,
-      this.title,
-      this.abstract,
-      this.desFacet,
-      this.orgFacet,
-      this.perFacet,
-      this.geoFacet,
-      this.media,
-      this.etaId});
+  Results({this.uri,
+    this.url,
+    this.id,
+    this.assetId,
+    this.source,
+    this.publishedDate,
+    this.updated,
+    this.section,
+    this.subsection,
+    this.nytdsection,
+    this.adxKeywords,
+    this.column,
+    this.byline,
+    this.type,
+    this.title,
+    this.abstract,
+    this.desFacet,
+    this.orgFacet,
+    this.perFacet,
+    this.geoFacet,
+    this.media,
+    this.etaId});
 
   Results.fromJson(Map<String, dynamic> json) {
     uri = json['uri'];

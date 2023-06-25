@@ -19,13 +19,7 @@ import 'package:nytimes/pages/webview/app_webview.dart';
 import 'package:nytimes/pages/webview/app_webview_controller.dart';
 import 'package:nytimes/widgets/bottom_bar/bottom_bar_controller.dart';
 
-// Kindly be informed that he is not shortlisted as well. Below is the comments on his assessment.
-// •            Incomplete requirement: App is not fetching and displaying Most Popular Articles
-// •            Searching Articles works in online mode only (offline mode is missing) > add offline local db search
-// •            todo ?? Location is not tracked dynamically > test with physical device
-// •            No pagination added > pagination landing page 10/page > search page search local db
-// •            Hard coded strings used > move to app_image and app_string
-// •            todo Coding style: Code not formatted, No Comments added
+/// The entry point of the application.
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
@@ -34,9 +28,11 @@ main() async {
   runApp(const MyApp());
 }
 
+/// The root widget of the application.
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  /// GetX is used to provide state management, translation, dependency injection, and route management.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

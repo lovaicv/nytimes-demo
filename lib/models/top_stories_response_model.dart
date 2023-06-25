@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+/// Data models for handling the response from the NY Times Top Stories
 class TopStoriesResponseModel {
   String? status;
   String? copyright;

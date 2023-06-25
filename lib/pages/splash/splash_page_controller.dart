@@ -4,6 +4,7 @@ import 'package:nytimes/core/routes.dart';
 import 'package:nytimes/database/articles_db.dart';
 import 'package:nytimes/utils/utils.dart';
 
+/// The controller for the `SplashPage` widget.
 class SplashPageController extends GetxController {
   @override
   onInit() {
@@ -11,6 +12,9 @@ class SplashPageController extends GetxController {
     initHive();
   }
 
+  /// Operation run in SplashPage before go to LandingPage
+  /// For example, initialize Hive database
+  /// after operation done, call countdown and move to next page
   initHive() async {
     try {
       await Hive.initFlutter();
@@ -27,6 +31,7 @@ class SplashPageController extends GetxController {
     }
   }
 
+  /// Countdown 2 seconds before move to next page
   countDown() {
     Future.delayed(const Duration(seconds: 2), () {
       Get.offAndToNamed(Routes.landing);

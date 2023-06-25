@@ -1,3 +1,4 @@
+/// The `Urls` class provides static constants representing the URLs used in the NY Times API.
 class Urls {
   static const String statusOk = 'OK';
   static const String baseUrl = 'https://api.nytimes.com/svc';

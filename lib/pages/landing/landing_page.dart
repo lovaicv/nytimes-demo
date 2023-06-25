@@ -10,6 +10,7 @@ import 'package:nytimes/database/articles_db.dart';
 import 'package:nytimes/pages/landing/landing_page_controller.dart';
 import 'package:nytimes/widgets/bottom_bar/bottom_bar.dart';
 
+/// A widget which is displayed as the landing screen of the application
 class LandingPage extends GetView<LandingPageController> {
   const LandingPage({Key? key}) : super(key: key);
 
@@ -26,19 +27,11 @@ class LandingPage extends GetView<LandingPageController> {
         actions: [
           IconButton(
             icon: const Icon(
-              // controller.locationController.isGpsEnabled.value ? Icons.location_on : Icons.location_off,
               Icons.settings,
               color: Colors.black,
             ),
             onPressed: () async {
               await Geolocator.openAppSettings();
-              // if (!controller.locationController.isGpsEnabled.value) {
-              //   showLog('click to requestService');
-              //   controller.locationController.requestLocationService();
-              //
-              // } else {
-              //   await Geolocator.openAppSettings();
-              // }
             },
           ),
         ],
@@ -60,19 +53,9 @@ class LandingPage extends GetView<LandingPageController> {
                             margin: const EdgeInsets.only(top: 60),
                             child: PagedListView.separated(
                               pagingController: controller.pagingController,
-                              // physics: const NeverScrollableScrollPhysics(),
-                              // shrinkWrap: true,
-                              // primary: false,
                               padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 80),
                               builderDelegate: PagedChildBuilderDelegate<Article>(
                                 itemBuilder: (BuildContext context, Article article, int index) {
-                                  // Article article = controller.results[index];
-                                  // String? imageUrl = '';
-                                  // if (article.multimediaUrl?.length == 1) {
-                                  //   imageUrl = article.multimedia?[0].url;
-                                  // } else {
-                                  //   imageUrl = article.multimedia?[1].url;
-                                  // }
                                   return InkWell(
                                     onTap: () {
                                       Get.toNamed(Routes.webView, arguments: {'url': article.url});
@@ -134,7 +117,7 @@ class LandingPage extends GetView<LandingPageController> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.end,
                                               children: [
-                                                // Text(article.tag??''),
+                                                Expanded(child: Text(article.tag ?? '')),
                                                 Text(article.date ?? ''),
                                               ],
                                             ),
@@ -151,7 +134,6 @@ class LandingPage extends GetView<LandingPageController> {
                                   height: 20,
                                 );
                               },
-                              // itemCount: controller.results.length,
                             ),
                           ),
                         ),
@@ -221,7 +203,7 @@ class LandingPage extends GetView<LandingPageController> {
           },
           child: const Icon(Icons.search),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

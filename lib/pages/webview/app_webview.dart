@@ -5,6 +5,7 @@ import 'package:nytimes/core/app_string.dart';
 import 'package:nytimes/pages/webview/app_webview_controller.dart';
 import 'package:nytimes/widgets/bottom_bar/bottom_bar.dart';
 
+/// A WebView widget which displays a web view for loading and rendering web content.
 class AppWebView extends GetView<AppWebViewController> {
   const AppWebView({Key? key}) : super(key: key);
 
@@ -51,8 +52,7 @@ class AppWebView extends GetView<AppWebViewController> {
               ),
             ],
           ),
-          // Obx(() => bottomBar(right: 0)),
-          BottomBar(
+          const BottomBar(
             right: 0,
           ),
         ],

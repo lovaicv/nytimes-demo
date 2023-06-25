@@ -1,5 +1,7 @@
 import 'package:nytimes/core/app_string.dart';
 
+/// ignore rule for lowerCamelCase
+/// translation string for language en_US
 const Map<String, String> en_US = {
   AppString.appName: "NY Times",
   AppString.offline: "You are currently offline",

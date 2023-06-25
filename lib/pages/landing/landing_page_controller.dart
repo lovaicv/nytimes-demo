@@ -15,6 +15,7 @@ import 'package:nytimes/models/most_popular_response_model.dart';
 import 'package:nytimes/models/top_stories_response_model.dart';
 import 'package:nytimes/utils/utils.dart';
 
+/// The controller for the `LandingPage` widget.
 class LandingPageController extends GetxController {
   LandingPageController({
     required this.repository,
@@ -23,12 +24,13 @@ class LandingPageController extends GetxController {
     required this.hive,
   });
 
-  GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
-  PagingController<int, Article> pagingController = PagingController(firstPageKey: 1);
   final HomeRepository repository;
   final LocationController locationController;
   final ConnectionController connectionController;
   final HiveInterface hive;
+  final _pageSize = 10;
+  GlobalKey<RefreshIndicatorState> refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  PagingController<int, Article> pagingController = PagingController(firstPageKey: 1);
   RxString title = AppString.topStories.obs;
   List<String> titles = [
     AppString.topStories,
@@ -39,14 +41,10 @@ class LandingPageController extends GetxController {
   RxList<Article> results = <Article>[].obs;
   RxBool isOffline = false.obs;
   bool isLoading = false;
-  final _pageSize = 10;
-
-  // RxBool gpsStatus = false.obs;
 
   @override
   onInit() async {
     super.onInit();
-    // isGpsEnabled();
     refreshList();
     pagingController.addPageRequestListener((pageKey) {
       showLog('addPageRequestListener $pageKey');
@@ -59,20 +57,14 @@ class LandingPageController extends GetxController {
     pagingController.dispose();
   }
 
-  // Future<void> requestLocation() async {
-  //   bool isEnabled = await locationController.requestLocation();
-  //   gpsStatus.value = isEnabled;
-  // }
-  //
-  // Future<void> isGpsEnabled() async {
-  //   gpsStatus.value = await locationController.isGpsEnabled();
-  // }
-
+  /// Resets the paging controller, clearing the results.
   void reset() {
     results.clear();
     pagingController.refresh();
   }
 
+  /// Make an API call to fetch top stories articles and store it in the database
+  /// [pageKey] to indicate which page to load
   Future<bool> callTopStoriesApi(int pageKey) async {
     ArticleBox box = ArticleBox(hive: hive);
     if (pageKey == 1) {
@@ -126,10 +118,8 @@ class LandingPageController extends GetxController {
     }
   }
 
-  // offline > no articles
-  // offline > load from db
-  // offline > no articles > online > load from api
-  // online > refresh > load from api
+  /// Fetch top stories articles from the local database and populate the results list
+  /// [pageKey] to indicate which page to load
   Future<void> getTopStories(int pageKey) async {
     ArticleBox box = ArticleBox(hive: hive);
 
@@ -148,9 +138,6 @@ class LandingPageController extends GetxController {
 
       // ================== pagination ==================
       List<Article> sublist = [];
-      // for (var i = pageKey; i < len; i += size) {
-      //   var end = (i + size < len) ? i + size : len;
-
       showLog('results ${results.length}');
       showLog('page $pageKey');
       if (pageKey == 1) {
@@ -179,17 +166,6 @@ class LandingPageController extends GetxController {
         }
       }
 
-      // if (pageKey * _pageSize < results.length - 1) {
-      //   int start = (pageKey == 1) ? 0 : ((pageKey-1) * _pageSize);
-      //   int end = (pageKey == 1) ? (pageKey * _pageSize): (pageKey * _pageSize + _pageSize);
-      //   showLog('start $start end $end');
-      //   sublist = results.sublist(start, end);
-      // } else {
-      //   sublist = results.sublist(pageKey * _pageSize, results.length);
-      // }
-
-      // results.add();
-      // }
       showLog('sublist ${sublist.length}');
       final isLastPage = sublist.length < _pageSize;
       if (isLastPage) {
@@ -201,96 +177,21 @@ class LandingPageController extends GetxController {
         pagingController.appendPage(sublist, pageKey + 1);
       }
       // ================== pagination ==================
-
-      // showSourceSnackBar();
-
-      // if (await connectionController.getConnection()) {
-      //   List<Article> alteredList = articles.where((element) => element.tag == 'Top Stories').toList();
-      //   results.addAll(alteredList);
-      //   // for (var element in articles) {
-      //   //   results.add(
-      //   //     Results(url: element.url, title: element.title, abstract: element.abstract, multimedia: [Multimedia(url: element.multimediaUrl)]),
-      //   //   );
-      //   // }
-      //   if (results.isNotEmpty) {
-      //     Get.showSnackbar(GetSnackBar(
-      //       duration: const Duration(seconds: 5),
-      //       messageText: const Text(
-      //         'Show articles from DB',
-      //         style: TextStyle(color: Colors.white),
-      //       ),
-      //       mainButton: Container(
-      //         margin: const EdgeInsets.only(right: 10),
-      //         child: GestureDetector(
-      //           onTap: () {
-      //             Get.closeAllSnackbars();
-      //           },
-      //           child: const Text(
-      //             'OK',
-      //             style: TextStyle(color: Colors.white),
-      //           ),
-      //         ),
-      //       ),
-      //     ));
-      //   }
-      // } else if (!isLoading) {
-      //   isLoading = true;
-      //   TopStoriesResponseModel responseModel = await repository.getTopStories();
-      //   if (responseModel.status == 'OK') {
-      //     isLoading = false;
-      //     results.clear();
-      //     List<Article> articles = await box.getAllItems();
-      //     responseModel.results?.forEach((element) {
-      //       String? multimediaUrl = '';
-      //       if (element.multimedia != null && element.multimedia!.isNotEmpty) {
-      //         try {
-      //           multimediaUrl = element.multimedia![1].url;
-      //         } catch (e) {
-      //           multimediaUrl = element.multimedia![0].url;
-      //         }
-      //       }
-      //       String? keywords = '';
-      //       if (element.desFacet != null && element.desFacet!.isNotEmpty) {
-      //         keywords = element.desFacet!.join(',');
-      //       }
-      //       Article article = Article(
-      //         element.url,
-      //         multimediaUrl,
-      //         element.title,
-      //         element.abstract,
-      //         keywords,
-      //         'Top Stories',
-      //       );
-      //       results.add(article);
-      //       Iterable<Article> isArticleExist = articles.where((element) => element.url == element.url);
-      //       if (isArticleExist.isEmpty) {
-      //         box.addItem(article);
-      //       }
-      //     });
-      //   }
-      // }
     }
     isLoading = false;
     showLog('list item ${pagingController.value.itemList?.length}');
     return;
   }
 
+  /// Make an API call to fetch most popular articles and store it in the database
+  /// [path] most popular url path, eg mostviewed, mostshared, mostemailed
+  /// [period] period which the article is most popular
+  /// [pageKey] to indicate which page to load
+  /// [tag] to indicate the source of the article
   Future<bool> callMostPopularApi(String path, int period, int pageKey, String tag) async {
     ArticleBox box = ArticleBox(hive: hive);
     List<Article> articles = await box.getAllItems();
     showLog('total item in box ${articles.length}');
-    // String tag = '';
-    // switch (path) {
-    //   case Urls.mostPopularEmailed:
-    //     tag = 'Most Popular - Emailed';
-    //     break;
-    //   case Urls.mostPopularViewed:
-    //     tag = 'Most Popular - Viewed';
-    //     break;
-    //   case Urls.mostPopularShared:
-    //     tag = 'Most Popular - Shared';
-    //     break;
-    // }
 
     if (pageKey == 1) {
       if (!await connectionController.getConnection()) {
@@ -340,74 +241,9 @@ class LandingPageController extends GetxController {
     }
   }
 
+  /// Fetch most popular articles from the local database and populate the results list
+  /// [pageKey] to indicate which page to load
   Future<void> getMostPopular(String path, int period, int pageKey, String tag) async {
-    //   if (await connectionController.getConnection()) {
-    //   List<Article> alteredList = articles.where((element) => element.tag == tag).toList();
-    //   results.addAll(alteredList);
-    //   // for (var element in articles) {
-    //   // results.add(
-    //   //   Results(url: element.url, title: element.title, abstract: element.abstract, multimedia: [Multimedia(url: element.multimediaUrl)]),
-    //   // );
-    //   // }
-    //   if (results.isNotEmpty) {
-    //     Get.showSnackbar(GetSnackBar(
-    //       duration: const Duration(seconds: 5),
-    //       messageText: const Text(
-    //         'Show articles from DB',
-    //         style: TextStyle(color: Colors.white),
-    //       ),
-    //       mainButton: Container(
-    //         margin: const EdgeInsets.only(right: 10),
-    //         child: GestureDetector(
-    //           onTap: () {
-    //             Get.closeAllSnackbars();
-    //           },
-    //           child: const Text(
-    //             'OK',
-    //             style: TextStyle(color: Colors.white),
-    //           ),
-    //         ),
-    //       ),
-    //     ));
-    //   }
-    // } else if (!isLoading) {
-    //   isLoading = true;
-    //   MostPopularResponseModel responseModel = await repository.getMostPopular(path, period);
-    //   if (responseModel.status == 'OK') {
-    //     isLoading = false;
-    //     results.clear();
-    //     responseModel.results?.forEach((element) {
-    //       String? multimediaUrl = '';
-    //       if (element.media != null && element.media!.isNotEmpty) {
-    //         Media media = element.media![0];
-    //         if (media.mediaMetadata != null && media.mediaMetadata!.isNotEmpty) {
-    //           try {
-    //             multimediaUrl = media.mediaMetadata![2].url;
-    //           } catch (e) {
-    //             multimediaUrl = media.mediaMetadata![0].url;
-    //           }
-    //         }
-    //       }
-    //       String? keywords = '';
-    //       if (element.desFacet != null && element.desFacet!.isNotEmpty) {
-    //         keywords = element.desFacet!.join(',');
-    //       }
-    //       Article article = Article(
-    //         element.url,
-    //         multimediaUrl,
-    //         element.title,
-    //         element.abstract,
-    //         keywords,
-    //         tag,
-    //       );
-    //       results.add(article);
-    //       Iterable<Article> isArticleExist = articles.where((element) => element.url == element.url);
-    //       if (isArticleExist.isEmpty) {
-    //         box.addItem(article);
-    //       }
-    //     });
-    //   }
-    // }
     ArticleBox box = ArticleBox(hive: hive);
     bool isFinish = await callMostPopularApi(path, period, pageKey, tag);
 
@@ -422,8 +258,6 @@ class LandingPageController extends GetxController {
 
       // ================== pagination ==================
       List<Article> sublist = [];
-      // for (var i = pageKey; i < len; i += size) {
-      //   var end = (i + size < len) ? i + size : len;
 
       showLog('results ${results.length}');
       showLog('page $pageKey');
@@ -465,38 +299,13 @@ class LandingPageController extends GetxController {
         pagingController.appendPage(sublist, pageKey + 1);
       }
     }
-    // showSourceSnackBar();
     isLoading = false;
     showLog('list item ${pagingController.value.itemList?.length}');
     return;
   }
 
-  // showSourceSnackBar() async {
-  //   if (await connectionController.getConnection()) {
-  //     if (results.isNotEmpty) {
-  //       Get.showSnackbar(GetSnackBar(
-  //         duration: const Duration(seconds: 5),
-  //         messageText: const Text(
-  //           'Show articles from DB',
-  //           style: TextStyle(color: Colors.white),
-  //         ),
-  //         mainButton: Container(
-  //           margin: const EdgeInsets.only(right: 10),
-  //           child: GestureDetector(
-  //             onTap: () {
-  //               Get.closeAllSnackbars();
-  //             },
-  //             child: const Text(
-  //               'OK',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ),
-  //         ),
-  //       ));
-  //     }
-  //   }
-  // }
-
+  /// Get which articles' source
+  /// [pageKey] to indicate which page to load
   Future getArticles(int pageKey) async {
     if (!isLoading) {
       showLog('getArticles');
@@ -515,11 +324,12 @@ class LandingPageController extends GetxController {
     return;
   }
 
+  /// Set the dropdown [value] to switch between article's source
   void setTitle(String? value) {
-    showLog('title $value');
     title.value = value ?? titles[0];
   }
 
+  /// Refresh the article list
   void refreshList() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       refreshIndicatorKey.currentState?.show();
