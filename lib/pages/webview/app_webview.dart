@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
+import 'package:nytimes/core/app_string.dart';
 import 'package:nytimes/pages/webview/app_webview_controller.dart';
-import 'package:nytimes/widgets/bottom_bar.dart';
+import 'package:nytimes/widgets/bottom_bar/bottom_bar.dart';
 
 class AppWebView extends GetView<AppWebViewController> {
   const AppWebView({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class AppWebView extends GetView<AppWebViewController> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Live Page"),
+        title: Text(AppString.livePage.tr),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
@@ -50,7 +51,10 @@ class AppWebView extends GetView<AppWebViewController> {
               ),
             ],
           ),
-          Obx(() => bottomBar(right: 0)),
+          // Obx(() => bottomBar(right: 0)),
+          BottomBar(
+            right: 0,
+          ),
         ],
       ),
     );

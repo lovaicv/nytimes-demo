@@ -4,10 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:nytimes/api/urls.dart';
+import 'package:nytimes/core/app_image.dart';
+import 'package:nytimes/core/app_string.dart';
 import 'package:nytimes/core/routes.dart';
-import 'package:nytimes/models/search_article_response_model.dart';
+import 'package:nytimes/database/articles_db.dart';
 import 'package:nytimes/pages/search/search_page_controller.dart';
-import 'package:nytimes/widgets/bottom_bar.dart';
+import 'package:nytimes/widgets/bottom_bar/bottom_bar.dart';
 
 class SearchPage extends GetView<SearchPageController> {
   const SearchPage({Key? key}) : super(key: key);
@@ -18,9 +21,9 @@ class SearchPage extends GetView<SearchPageController> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
-          'Search',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          AppString.search.tr,
+          style: const TextStyle(color: Colors.black),
         ),
         foregroundColor: Colors.black,
       ),
@@ -42,9 +45,9 @@ class SearchPage extends GetView<SearchPageController> {
                       Expanded(
                           child: TextField(
                         focusNode: controller.focusNode,
-                        decoration: const InputDecoration(
+                            decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'election',
+                          hintText: AppString.election.tr,
                         ),
                         onChanged: (newText) {
                           controller.searchText = newText;
@@ -76,15 +79,15 @@ class SearchPage extends GetView<SearchPageController> {
                       pagingController: controller.pagingController,
                       shrinkWrap: true,
                       padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 60),
-                      builderDelegate: PagedChildBuilderDelegate<Docs>(itemBuilder: (BuildContext context, Docs docs, int index) {
+                      builderDelegate: PagedChildBuilderDelegate<Article>(itemBuilder: (BuildContext context, Article article, int index) {
                         // Docs? docs = controller.docs?[index];
                         String? imageUrl;
-                        if (docs.multimedia != null && docs.multimedia!.isNotEmpty) {
-                          imageUrl = 'https://static01.nyt.com/${docs.multimedia?[0].url}';
+                        if (article.multimediaUrl != null && article.multimediaUrl!.isNotEmpty) {
+                          imageUrl = '${Urls.imageUrl}${article.multimediaUrl}';
                         }
                         return InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.webView, arguments: {'url': docs.webUrl});
+                            Get.toNamed(Routes.webView, arguments: {'url': article.url});
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -103,34 +106,49 @@ class SearchPage extends GetView<SearchPageController> {
                                         imageUrl: imageUrl ?? '',
                                         height: 250,
                                         fit: BoxFit.cover,
-                                        errorWidget: (context, url, error) => const Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(Icons.error),
-                                            Text('Error loading image'),
-                                          ],
+                                        placeholder: (BuildContext context, String string) => Image.asset(
+                                          AppImage.placeHolderImage,
+                                          fit: BoxFit.cover,
+                                          width: double.infinity,
+                                        ),
+                                        errorWidget: (context, url, error) => Image.asset(
+                                          AppImage.placeHolderImage,
+                                          fit: BoxFit.cover,
+                                          width: double.infinity,
                                         ),
                                       ),
                                     )),
                                 const SizedBox(
                                   height: 5,
                                 ),
+                                // Text(article.keywords ?? ''),
                                 Container(
-                                  padding: const EdgeInsets.all(10),
+                                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
                                       Text(
-                                        docs.headline?.main ?? '',
+                                        article.title ?? '',
                                         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       Text(
-                                        docs.abstract ?? '',
+                                        article.abstract ?? '',
+                                        textAlign: TextAlign.justify,
                                         style: const TextStyle(fontSize: 15),
                                       ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      // Text(article.tag??''),
+                                      Text(article.date ?? ''),
                                     ],
                                   ),
                                 ),
@@ -150,7 +168,7 @@ class SearchPage extends GetView<SearchPageController> {
                               color: Colors.white,
                             )));
                       }, noItemsFoundIndicatorBuilder: (_) {
-                        return const Center(child: Text('no result found'));
+                        return Center(child: Text(AppString.noResultFound.tr));
                       }, newPageErrorIndicatorBuilder: (_) {
                         return Container();
                       }),
@@ -165,22 +183,23 @@ class SearchPage extends GetView<SearchPageController> {
                 ),
               ],
             ),
-            Center(
-              child: Obx(
-                () => Visibility(
-                  visible: !controller.isLoading.isTrue && (controller.docs?.isEmpty ?? false),
-                  child: Text(
-                    controller.text.value,
-                    style: const TextStyle(color: Colors.white),
+            Obx(() => Center(
+                  child: Visibility(
+                    visible: !controller.isLoading.value && controller.isListEmpty.value,
+                    child: Text(
+                      controller.text.value,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              ),
+                )),
+            // Obx(() => bottomBar(right: 0)),
+            BottomBar(
+              right: 0,
             ),
-            Obx(() => bottomBar(right: 0)),
             Center(
                 child: Obx(
               () => Visibility(
-                visible: controller.isLoading.isTrue,
+                visible: controller.isLoading.value,
                 child: const CircularProgressIndicator(
                   color: Colors.white,
                 ),

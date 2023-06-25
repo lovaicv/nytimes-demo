@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nytimes/core/app_image.dart';
 import 'package:nytimes/pages/splash/splash_page_controller.dart';
 
 class SplashPage extends GetView<SplashPageController> {
@@ -12,7 +13,7 @@ class SplashPage extends GetView<SplashPageController> {
       body: Container(
         alignment: Alignment.center,
         child: Image.asset(
-          'assets/images/splash.png',
+          AppImage.splashImage,
         ),
       ),
     );

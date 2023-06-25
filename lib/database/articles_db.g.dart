@@ -21,13 +21,16 @@ class ArticleAdapter extends TypeAdapter<Article> {
       fields[1] as String?,
       fields[2] as String?,
       fields[3] as String?,
+      fields[4] as String?,
+      fields[5] as String?,
+      fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Article obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.url)
       ..writeByte(1)
@@ -35,7 +38,13 @@ class ArticleAdapter extends TypeAdapter<Article> {
       ..writeByte(2)
       ..write(obj.title)
       ..writeByte(3)
-      ..write(obj.abstract);
+      ..write(obj.abstract)
+      ..writeByte(4)
+      ..write(obj.keywords)
+      ..writeByte(5)
+      ..write(obj.tag)
+      ..writeByte(6)
+      ..write(obj.date);
   }
 
   @override

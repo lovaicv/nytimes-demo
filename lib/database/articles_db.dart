@@ -1,11 +1,9 @@
-import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:nytimes/models/top_stories_response_model.dart';
 
 part 'articles_db.g.dart';
 
 abstract class ArticleBoxAbstract {
-  addItems(RxList<Results> results);
+  addItem(Article article);
 
   getAllItems();
 }
@@ -26,12 +24,9 @@ class ArticleBox implements ArticleBoxAbstract {
   // }
 
   @override
-  addItems(RxList<Results> results) async {
-    await clearArticles();
+  Future<int> addItem(Article article) async {
     Box box = await openArticlesBox();
-    results
-        .asMap()
-        .forEach((index, element) => box.put(index, Article(element.url, element.multimedia?[1].url, element.title, element.abstract)));
+    return await box.add(article);
   }
 
   @override
@@ -66,6 +61,12 @@ class Article extends HiveObject {
   String? title;
   @HiveField(3)
   String? abstract;
+  @HiveField(4)
+  String? keywords; //used for offline search
+  @HiveField(5)
+  String? tag; //top stories, most emailed, most viewed, most shared
+  @HiveField(6)
+  String? date;
 
-  Article(this.url, this.multimediaUrl, this.title, this.abstract);
+  Article(this.url, this.multimediaUrl, this.title, this.abstract, this.keywords, this.tag, this.date);
 }

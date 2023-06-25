@@ -23,6 +23,21 @@ class HomeProvider extends GetConnect {
         query: {'api-key': Constant.getApiKey()},
       );
 
+  Future<Response<dynamic>> getMostPopular(String path) => get(
+        path,
+        query: {'api-key': Constant.getApiKey()},
+      );
+
+  // Future<Response<dynamic>> getMostShared(int period) => get(
+  //       path,
+  //       query: {'api-key': Constant.getApiKey()},
+  //     );
+  //
+  // Future<Response<dynamic>> getMostViewed(int period path) => get(
+  //       path,
+  //       query: {'api-key': Constant.getApiKey()},
+  //     );
+
   Future<Response<dynamic>> searchArticle(String path, String query, int page) => get(
         path,
         query: {
@@ -33,19 +48,19 @@ class HomeProvider extends GetConnect {
       );
 }
 
-dynamic responseHandler(Response response) {
-  switch (response.statusCode) {
-    case 200:
-    case 201:
-    case 202:
-      var responseJson = response.body.toString();
-      return responseJson;
-    case 500:
-      throw "Server Error pls retry later";
-    case 403:
-      throw 'Error occurred pls check internet and retry.';
-    case 500:
-    default:
-      throw 'Error occurred retry';
-  }
-}
+// dynamic responseHandler(Response response) {
+//   switch (response.statusCode) {
+//     case 200:
+//     case 201:
+//     case 202:
+//       var responseJson = response.body.toString();
+//       return responseJson;
+//     case 500:
+//       throw "Server Error pls retry later";
+//     case 403:
+//       throw 'Error occurred pls check internet and retry.';
+//     case 500:
+//     default:
+//       throw 'Error occurred retry';
+//   }
+// }

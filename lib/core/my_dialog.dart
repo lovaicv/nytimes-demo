@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nytimes/core/app_string.dart';
 
 void showSimpleDialog(String message) {
   if (Get.isDialogOpen ?? false) Get.back();
@@ -22,5 +23,5 @@ simpleDialogContent(String message) {
 }
 
 simpleDialogActions() {
-  return TextButton(onPressed: () => Get.back(), child: const Text('OK'));
+  return TextButton(onPressed: () => Get.back(), child: Text(AppString.ok.tr));
 }
