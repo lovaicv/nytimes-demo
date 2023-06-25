@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:nytimes/api/urls.dart';
 import 'package:nytimes/core/constant.dart';
-import 'package:nytimes/utils/utils.dart';
 
 /// The `HomeProvider` class is responsible for making HTTP requests to the NY Times API
 /// in order to retrieve articles and perform article searches.
@@ -15,7 +14,6 @@ class HomeProvider extends GetConnect {
 
     // Request modifier to log the URL before sending the request
     httpClient.addRequestModifier((Request request) {
-      showLog(request.url);
       return request;
     });
 

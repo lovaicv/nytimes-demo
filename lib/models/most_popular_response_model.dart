@@ -14,18 +14,18 @@ class MostPopularResponseModel {
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['copyright'] = this.copyright;
-    data['num_results'] = this.numResults;
-    if (this.results != null) {
-      data['results'] = this.results!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['copyright'] = copyright;
+    data['num_results'] = numResults;
+    if (results != null) {
+      data['results'] = results!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -43,7 +43,7 @@ class Results {
   String? subsection;
   String? nytdsection;
   String? adxKeywords;
-  Null? column;
+  void column;
   String? byline;
   String? type;
   String? title;
@@ -66,8 +66,8 @@ class Results {
     this.subsection,
     this.nytdsection,
     this.adxKeywords,
-    this.column,
-    this.byline,
+    // this.column,
+      this.byline,
     this.type,
     this.title,
     this.abstract,
@@ -90,7 +90,7 @@ class Results {
     subsection = json['subsection'];
     nytdsection = json['nytdsection'];
     adxKeywords = json['adx_keywords'];
-    column = json['column'];
+    // column = json['column'];
     byline = json['byline'];
     type = json['type'];
     title = json['title'];
@@ -102,38 +102,38 @@ class Results {
     if (json['media'] != null) {
       media = <Media>[];
       json['media'].forEach((v) {
-        media!.add(new Media.fromJson(v));
+        media!.add(Media.fromJson(v));
       });
     }
     etaId = json['eta_id'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uri'] = this.uri;
-    data['url'] = this.url;
-    data['id'] = this.id;
-    data['asset_id'] = this.assetId;
-    data['source'] = this.source;
-    data['published_date'] = this.publishedDate;
-    data['updated'] = this.updated;
-    data['section'] = this.section;
-    data['subsection'] = this.subsection;
-    data['nytdsection'] = this.nytdsection;
-    data['adx_keywords'] = this.adxKeywords;
-    data['column'] = this.column;
-    data['byline'] = this.byline;
-    data['type'] = this.type;
-    data['title'] = this.title;
-    data['abstract'] = this.abstract;
-    data['des_facet'] = this.desFacet;
-    data['org_facet'] = this.orgFacet;
-    data['per_facet'] = this.perFacet;
-    data['geo_facet'] = this.geoFacet;
-    if (this.media != null) {
-      data['media'] = this.media!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uri'] = uri;
+    data['url'] = url;
+    data['id'] = id;
+    data['asset_id'] = assetId;
+    data['source'] = source;
+    data['published_date'] = publishedDate;
+    data['updated'] = updated;
+    data['section'] = section;
+    data['subsection'] = subsection;
+    data['nytdsection'] = nytdsection;
+    data['adx_keywords'] = adxKeywords;
+    // data['column'] = this.column;
+    data['byline'] = byline;
+    data['type'] = type;
+    data['title'] = title;
+    data['abstract'] = abstract;
+    data['des_facet'] = desFacet;
+    data['org_facet'] = orgFacet;
+    data['per_facet'] = perFacet;
+    data['geo_facet'] = geoFacet;
+    if (media != null) {
+      data['media'] = media!.map((v) => v.toJson()).toList();
     }
-    data['eta_id'] = this.etaId;
+    data['eta_id'] = etaId;
     return data;
   }
 }
@@ -157,20 +157,20 @@ class Media {
     if (json['media-metadata'] != null) {
       mediaMetadata = <MediaMetadata>[];
       json['media-metadata'].forEach((v) {
-        mediaMetadata!.add(new MediaMetadata.fromJson(v));
+        mediaMetadata!.add(MediaMetadata.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['subtype'] = this.subtype;
-    data['caption'] = this.caption;
-    data['copyright'] = this.copyright;
-    data['approved_for_syndication'] = this.approvedForSyndication;
-    if (this.mediaMetadata != null) {
-      data['media-metadata'] = this.mediaMetadata!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['subtype'] = subtype;
+    data['caption'] = caption;
+    data['copyright'] = copyright;
+    data['approved_for_syndication'] = approvedForSyndication;
+    if (mediaMetadata != null) {
+      data['media-metadata'] = mediaMetadata!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -192,11 +192,11 @@ class MediaMetadata {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['format'] = this.format;
-    data['height'] = this.height;
-    data['width'] = this.width;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['format'] = format;
+    data['height'] = height;
+    data['width'] = width;
     return data;
   }
 }

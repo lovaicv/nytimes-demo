@@ -47,7 +47,6 @@ class LandingPageController extends GetxController {
     super.onInit();
     refreshList();
     pagingController.addPageRequestListener((pageKey) {
-      showLog('addPageRequestListener $pageKey');
       getArticles(pageKey);
     });
   }
@@ -71,8 +70,6 @@ class LandingPageController extends GetxController {
       if (!await connectionController.getConnection()) {
         TopStoriesResponseModel responseModel = await repository.getTopStories();
         if (responseModel.status == Urls.statusOk && responseModel.results != null) {
-          // results.clear();
-          showLog('total articles from api ${responseModel.results?.length}');
           List<Article> articles = await box.getAllItems();
           for (var element in responseModel.results!) {
             String? multimediaUrl = '';
@@ -96,24 +93,19 @@ class LandingPageController extends GetxController {
               AppString.topStories,
               convertDateFormat(element.publishedDate!),
             );
-            // results.add(article);
             Iterable<Article> isArticleExist = articles.where((article) => element.url == article.url);
             if (isArticleExist.isEmpty) {
               await box.addItem(article);
             }
           }
-          showLog('return api call 1');
           return Future.value(true);
         } else {
-          showLog('return api call 2');
           return Future.value(true);
         }
       } else {
-        showLog('return api call 3');
         return Future.value(true);
       }
     } else {
-      showLog('return api call 4');
       return Future.value(true);
     }
   }
@@ -122,64 +114,45 @@ class LandingPageController extends GetxController {
   /// [pageKey] to indicate which page to load
   Future<void> getTopStories(int pageKey) async {
     ArticleBox box = ArticleBox(hive: hive);
-
     bool isFinish = await callTopStoriesApi(pageKey);
-    showLog('isFinish $isFinish');
-
     if (isFinish) {
       if (pageKey == 1) {
         List<Article> articles = await box.getAllItems();
-        showLog('total item in box ${articles.length}');
         List<Article> alteredList = articles.where((element) => element.tag == AppString.topStories).toList();
         alteredList.sort((a, b) => myDateFormat().parse(b.date!).compareTo(myDateFormat().parse(a.date!)));
         results.clear();
         results.addAll(alteredList);
       }
-
       // ================== pagination ==================
       List<Article> sublist = [];
-      showLog('results ${results.length}');
-      showLog('page $pageKey');
       if (pageKey == 1) {
-        showLog('condition ${pageKey * _pageSize} < ${results.length}');
         if (pageKey * _pageSize < results.length) {
           int start = 0;
           int end = pageKey * _pageSize;
-          showLog('start $start end $end');
           sublist = results.sublist(start, end);
         } else if (pageKey * _pageSize > results.length) {
-          showLog('start 0 end ${results.length}');
           sublist = results.sublist(0, results.length);
         } else {
           sublist = results.sublist(pageKey * _pageSize, results.length);
         }
       } else {
-        // int tempPageKey = pageKey-1;
-        showLog('condition ${pageKey * _pageSize} < ${results.length}');
         if (pageKey * _pageSize < results.length) {
           int start = (pageKey - 1) * _pageSize;
           int end = pageKey * _pageSize;
-          showLog('start $start end $end');
           sublist = results.sublist(start, end);
         } else {
           sublist = results.sublist((pageKey - 1) * _pageSize, results.length);
         }
       }
-
-      showLog('sublist ${sublist.length}');
       final isLastPage = sublist.length < _pageSize;
       if (isLastPage) {
-        showLog('last page $pageKey');
         pagingController.appendLastPage(sublist);
       } else {
-        // final nextPageKey = pageKey + sublist.length;
-        showLog('$pageKey next page ${pageKey + 1}');
         pagingController.appendPage(sublist, pageKey + 1);
       }
       // ================== pagination ==================
     }
     isLoading = false;
-    showLog('list item ${pagingController.value.itemList?.length}');
     return;
   }
 
@@ -191,13 +164,10 @@ class LandingPageController extends GetxController {
   Future<bool> callMostPopularApi(String path, int period, int pageKey, String tag) async {
     ArticleBox box = ArticleBox(hive: hive);
     List<Article> articles = await box.getAllItems();
-    showLog('total item in box ${articles.length}');
-
     if (pageKey == 1) {
       if (!await connectionController.getConnection()) {
         MostPopularResponseModel responseModel = await repository.getMostPopular(path, period);
         if (responseModel.status == Urls.statusOk) {
-          showLog('total articles from api ${responseModel.results?.length}');
           for (var element in responseModel.results!) {
             String? multimediaUrl = '';
             if (element.media != null && element.media!.isNotEmpty) {
@@ -255,52 +225,35 @@ class LandingPageController extends GetxController {
         results.clear();
         results.addAll(alteredList);
       }
-
       // ================== pagination ==================
       List<Article> sublist = [];
-
-      showLog('results ${results.length}');
-      showLog('page $pageKey');
       if (pageKey == 1) {
-        showLog('condition ${pageKey * _pageSize} < ${results.length}');
         if (pageKey * _pageSize < results.length) {
           int start = 0;
           int end = pageKey * _pageSize;
-          showLog('start $start end $end');
           sublist = results.sublist(start, end);
         } else if (pageKey * _pageSize > results.length) {
-          showLog('start 0 end ${results.length}');
           sublist = results.sublist(0, results.length);
         } else {
-          showLog('start ${pageKey * _pageSize} end ${results.length}');
           sublist = results.sublist(pageKey * _pageSize, results.length);
         }
       } else {
-        // int tempPageKey = pageKey-1;
-        showLog('condition ${pageKey * _pageSize} < ${results.length}');
         if (pageKey * _pageSize < results.length) {
           int start = (pageKey - 1) * _pageSize;
           int end = pageKey * _pageSize;
-          showLog('start $start end $end');
           sublist = results.sublist(start, end);
         } else {
-          showLog('start ${(pageKey - 1) * _pageSize} end ${results.length}');
           sublist = results.sublist((pageKey - 1) * _pageSize, results.length);
         }
       }
-      showLog('sublist ${sublist.length}');
       final isLastPage = sublist.length < _pageSize;
       if (isLastPage) {
-        showLog('last page $pageKey');
         pagingController.appendLastPage(sublist);
       } else {
-        // final nextPageKey = pageKey + sublist.length;
-        showLog('$pageKey next page ${pageKey + 1}');
         pagingController.appendPage(sublist, pageKey + 1);
       }
     }
     isLoading = false;
-    showLog('list item ${pagingController.value.itemList?.length}');
     return;
   }
 
@@ -308,7 +261,6 @@ class LandingPageController extends GetxController {
   /// [pageKey] to indicate which page to load
   Future getArticles(int pageKey) async {
     if (!isLoading) {
-      showLog('getArticles');
       isLoading = true;
       switch (title.value) {
         case AppString.topStories:

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/services.dart';
 
+// ignore_for_file: camel_case_types
 final DynamicLibrary nativeKeysLib = Platform.isAndroid ? DynamicLibrary.open("libnative_keys.so") : DynamicLibrary.process();
 final int Function(int x, int y) nativeAdd = nativeKeysLib.lookup<NativeFunction<Int32 Function(Int32, Int32)>>("native_add").asFunction();
 
@@ -20,7 +21,7 @@ final functionPointer kaepyiFunction = nativeKeysLib.lookup<NativeFunction<funct
 final String kaepyi = kaepyiFunction().toDartString();
 
 class NativeKeys {
-  static const MethodChannel _channel = const MethodChannel('native_keys');
+  static const MethodChannel _channel = MethodChannel('native_keys');
 
   static Future<String> get platformVersion async {
     final String version = await _channel.invokeMethod('getPlatformVersion');

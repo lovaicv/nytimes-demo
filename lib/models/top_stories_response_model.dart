@@ -20,20 +20,20 @@ class TopStoriesResponseModel {
     if (json['results'] != null) {
       results = <Results>[].obs;
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['copyright'] = this.copyright;
-    data['section'] = this.section;
-    data['last_updated'] = this.lastUpdated;
-    data['num_results'] = this.numResults;
-    if (this.results != null) {
-      data['results'] = this.results!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['copyright'] = copyright;
+    data['section'] = section;
+    data['last_updated'] = lastUpdated;
+    data['num_results'] = numResults;
+    if (results != null) {
+      data['results'] = results!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -102,35 +102,35 @@ class Results {
     if (json['multimedia'] != null) {
       multimedia = <Multimedia>[];
       json['multimedia'].forEach((v) {
-        multimedia!.add(new Multimedia.fromJson(v));
+        multimedia!.add(Multimedia.fromJson(v));
       });
     }
     shortUrl = json['short_url'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['section'] = this.section;
-    data['subsection'] = this.subsection;
-    data['title'] = this.title;
-    data['abstract'] = this.abstract;
-    data['url'] = this.url;
-    data['uri'] = this.uri;
-    data['byline'] = this.byline;
-    data['item_type'] = this.itemType;
-    data['updated_date'] = this.updatedDate;
-    data['created_date'] = this.createdDate;
-    data['published_date'] = this.publishedDate;
-    data['material_type_facet'] = this.materialTypeFacet;
-    data['kicker'] = this.kicker;
-    data['des_facet'] = this.desFacet;
-    data['org_facet'] = this.orgFacet;
-    data['per_facet'] = this.perFacet;
-    data['geo_facet'] = this.geoFacet;
-    if (this.multimedia != null) {
-      data['multimedia'] = this.multimedia!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['section'] = section;
+    data['subsection'] = subsection;
+    data['title'] = title;
+    data['abstract'] = abstract;
+    data['url'] = url;
+    data['uri'] = uri;
+    data['byline'] = byline;
+    data['item_type'] = itemType;
+    data['updated_date'] = updatedDate;
+    data['created_date'] = createdDate;
+    data['published_date'] = publishedDate;
+    data['material_type_facet'] = materialTypeFacet;
+    data['kicker'] = kicker;
+    data['des_facet'] = desFacet;
+    data['org_facet'] = orgFacet;
+    data['per_facet'] = perFacet;
+    data['geo_facet'] = geoFacet;
+    if (multimedia != null) {
+      data['multimedia'] = multimedia!.map((v) => v.toJson()).toList();
     }
-    data['short_url'] = this.shortUrl;
+    data['short_url'] = shortUrl;
     return data;
   }
 }
@@ -159,15 +159,15 @@ class Multimedia {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['format'] = this.format;
-    data['height'] = this.height;
-    data['width'] = this.width;
-    data['type'] = this.type;
-    data['subtype'] = this.subtype;
-    data['caption'] = this.caption;
-    data['copyright'] = this.copyright;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['format'] = format;
+    data['height'] = height;
+    data['width'] = width;
+    data['type'] = type;
+    data['subtype'] = subtype;
+    data['caption'] = caption;
+    data['copyright'] = copyright;
     return data;
   }
 }

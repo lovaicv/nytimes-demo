@@ -1,5 +1,7 @@
 import 'package:nytimes/core/app_string.dart';
 
+// ignore_for_file: file_names
+// ignore_for_file: constant_identifier_names
 /// ignore rule for lowerCamelCase
 /// translation string for language en_US
 const Map<String, String> en_US = {
