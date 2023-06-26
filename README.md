@@ -20,7 +20,7 @@ v2.0.0
 6. Code is formatted using default flutter linter rule.
 7. Documentation is added on class and method.
 8. Github workflows CI is added,
-   - flutter anaylze
+   - flutter analyze
    - flutter test
    - flutter build apk / ios
 
