@@ -7,12 +7,12 @@ how to build and run using Android Studio
 4. flutter test > to run unit and widget tests
 
 v2.0.0
-1. Added most popular articles in the landing page, select article source frop dropdown.
+1. Added most popular articles in the landing page, select article source from dropdown.
 2. App now has offline mode for landing and search page, except live page. As long as app has
    fetched some articles from API previously, it will save the articles in database, when device is
    offline, it will instead fetch article from database instead of API.
-3. Updated location tracking, it is working previously but accuraccy is only up to 3 decimal place.
-   Now the app will show the whole coordinate wihout limiting decimal place, user should be getting
+3. Updated location tracking, it is working previously but accuracy is only up to 3 decimal place.
+   Now the app will show the whole coordinate without limiting decimal place, user should be getting
    most accurate location tracking.
 4. Hardcoded text has consolidated to another class and translation service is added for future
    reference.
