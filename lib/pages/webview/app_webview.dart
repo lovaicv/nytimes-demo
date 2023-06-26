@@ -53,7 +53,8 @@ class AppWebView extends GetView<AppWebViewController> {
             ],
           ),
           const BottomBar(
-            right: 0,
+            left: 10,
+            right: 10,
           ),
         ],
       ),
